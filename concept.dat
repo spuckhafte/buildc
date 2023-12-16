@@ -1,0 +1,17 @@
+a build tool for c/c++
+
+/*
+CMDS:
+    buildc create myproject c
+    buildc build
+    buildc run
+*/
+
+/*
+buildc.bc file:
+    lang: c
+    compiler: gcc
+    main: main.c
+    other-files: one.c two.c three.c
+    other-dirs: dir1 dir2 dir3
+*/

@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.py": "python",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "vector": "cpp",
+        "memory_resource": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "cmath": "cpp",
+        "ostream": "cpp"
+    }
+}
