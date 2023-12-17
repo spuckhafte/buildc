@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
+#include <cstring>
 
 #include "helpers.hpp"
 
@@ -27,10 +28,9 @@ void build() {
 
     help::for_build::includeFilesFromDirs(cmd, settings.otherdirs.str(), settings.lang);
 
-    settings.mainfile.pop_back();
-    settings.mainfile.pop_back();
-    help::trim(settings.mainfile);
-    cmd << " -o " << settings.mainfile << ".out";
+    string filename = strtok((char*) settings.mainfile.c_str(), ".");
+
+    cmd << " -o " << filename << ".out";
 
     int status = system(cmd.str().c_str());
 
