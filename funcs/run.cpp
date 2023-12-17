@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <string>
 #include <sstream>
+#include <cstring>
 
 #include "helpers.hpp"
 
@@ -23,12 +24,10 @@ void run() {
     help::Settings settings;
     help::for_build::configure(file, settings);
 
-    settings.mainfile.pop_back();
-    settings.mainfile.pop_back();
-    help::trim(settings.mainfile);
+    string filename = strtok((char*) settings.mainfile.c_str(), ".");
 
     stringstream cmd;
-    cmd << "./" << settings.mainfile << ".out";
+    cmd << "./" << filename << ".out";
 
     system(cmd.str().c_str());
 }
