@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+git clone https://github.com/spuckhafte/buildc
+sudo mv ./buildc/buildc ../../bin
+sudo rm -r buildc
