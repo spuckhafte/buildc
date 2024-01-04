@@ -8,52 +8,43 @@
 using namespace std;
 namespace fs = filesystem;
 
-namespace help
-{
-    void trim(string &str)
-    {
+namespace help {
+    void trim(string &str) {
         while (str.front() == ' ')
             str.erase(0, 1);
         while (str.back() == ' ')
             str.pop_back();
     }
 
-    namespace logger
-    {
-        void log(string msg)
-        {
+    namespace logger {
+        void log(string msg) {
             cout << endl
                  << msg << endl
                  << endl;
         }
 
-        void exitWithError(string err)
-        {
+        void exitWithError(string err) {
             log(err);
             exit(1);
         }
     }
 
-    namespace for_create
-    {
-        const char *newMainFile(string filetype)
-        {
+    namespace for_create {
+        const char *newMainFile(string filetype) {
             if (filetype == "c")
                 return "#include <stdio.h>\n\nint main() {\n    printf(\"Hello World\\n\");\n\n    return 0;\n}";
             else
                 return "#include <iostream>\n\nint main() {\n    std::cout << \"Hello World\\n\";\n\n    return 0;\n}";
         }
 
-        const char *newBuildcFile(string filetype)
-        {
+        const char *newBuildcFile(string filetype) {
             if (filetype == "c")
                 return "lang: c\ncompiler: gcc\nmainfile: main.c\nother-files: \nother-dirs: ";
             else
                 return "lang: cpp\ncompiler: g++\nmainfile: main.cpp\nother-files: \nother-dirs: ";
         }
 
-        stringstream pathForNewFiles(string dir, string file)
-        {
+        stringstream pathForNewFiles(string dir, string file) {
             stringstream ss;
             if (dir != ".")
                 ss << "./";
@@ -62,10 +53,8 @@ namespace help
         }
     }
 
-    namespace for_build
-    {
-        void configure(string &file, Settings &settings)
-        {
+    namespace for_build {
+        void configure(string &file, Settings &settings) {
             string forLang = strtok((char *)file.c_str(), "\n");
             string forComp = strtok(NULL, "\n");
             string forMain = strtok(NULL, "\n");
@@ -88,8 +77,7 @@ namespace help
             settings.otherdirs << strtok(NULL, ":");
         }
 
-        bool validBCFile(string &file)
-        {
+        bool validBCFile(string &file) {
             string tokens[5] = {"lang:", "mainfile:", "compiler:", "other-files:", "other-dirs:"};
 
             for (const string &token : tokens)
@@ -99,32 +87,27 @@ namespace help
             return true;
         }
 
-        void readBCFile(string &str)
-        {
+        void readBCFile(string &str) {
             FILE *fp;
             fp = fopen("buildc", "r");
 
             int c = fgetc(fp);
             char ch[1];
-            while (c != EOF)
-            {
+            while (c != EOF) {
                 ch[0] = (char)c;
                 str.append(ch);
                 c = fgetc(fp);
             }
         }
 
-        void includeFilesFromDirs(stringstream &cmd, string dir_list, string lang)
-        {
+        void includeFilesFromDirs(stringstream &cmd, string dir_list, string lang) {
             stringstream path;
 
-            for (auto &dir : fs::directory_iterator("."))
-            {
+            for (auto &dir : fs::directory_iterator(".")) {
                 string dirname = dir.path();
                 dirname.erase(0, 2);
 
-                if (dir_list.find(dirname) != string::npos)
-                {
+                if (dir_list.find(dirname) != string::npos) {
                     lang.insert(lang.begin(), '.');
 
                     for (auto &file : fs::directory_iterator(dir.path()))
