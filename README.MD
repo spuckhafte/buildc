@@ -1,5 +1,7 @@
 ## BuildC: easy to use build tool for c/c++ projects
-(currently supported for linux only)
+BuildC is a lightweight and user-friendly build tool for C/C++ projects, simplifying project creation, compilation, and execution with its intuitive command-line interface. With automated compilation and customizable configuration, BuildC streamlines the development process, allowing developers to focus on coding rather than managing build commands.
+
+*(currently supported for **linux** only)*
 
 ### How to use:
  - open terminal
