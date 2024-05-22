@@ -26,6 +26,12 @@ int main(int args_c, char* args[]) {
     else if (cmd == "help")
         help::helpMsg();
 
+    else if (cmd == "try") {
+        build();
+        run();
+    }
+
+
     else
         help::logger::exitWithError("[err] No such command available\n\tuse: buildc help");
 

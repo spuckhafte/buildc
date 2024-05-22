@@ -5,6 +5,7 @@ CMDS:
     buildc create myproject c
     buildc build
     buildc run
+    buildc try
 */
 
 /*

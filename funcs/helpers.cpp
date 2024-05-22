@@ -121,7 +121,7 @@ namespace help {
     void helpMsg() {
         stringstream msg;
         msg << "BuildC: easy to use build tool for c/c++ projects\n"
-        << "\ncommands: create, build, run\n"
+        << "\ncommands: create, build, run, try\n"
 
         << "[create]:\n"
         << "\t> buildc create <project_name> <project_lang>\n"
@@ -136,6 +136,10 @@ namespace help {
         << "\n[run]:\n"
         << "\t> buildc run\n"
         << "\n\tWill run the compiled executable\n"
+        
+        << "\n[try]:\n"
+        << "\t> buildc try\n"
+        << "\n\tWill build and run the project at once\n"
 
         << "\nThe [buildc] file:\n"
         << "\tThis file contains the information of the project including the language, compiler, mainfile, other_files and other_dirs\n"
